@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — TechSphere</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <h1><i class="bi bi-envelope me-2"></i>Contáctanos</h1>
+      <p>Estamos aquí para ayudarte. Envíanos tu consulta y te responderemos pronto.</p>
+    </div>
+  </div>
+
+  <div class="breadcrumb-custom">
+    <div class="container">
+      <a href="../index.html">Inicio</a>
+      <span class="separator">›</span>
+      <strong>Contacto</strong>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="row g-5">
+        <!-- FORMULARIO -->
+        <div class="col-lg-7">
+          <h3 class="mb-2" style="font-weight:700">Envíanos un Mensaje</h3>
+          <p class="text-muted mb-4" style="font-size:0.9rem">Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.</p>
+
+          <!-- Mensaje de éxito (oculto por defecto) -->
+          <div class="alert alert-success d-none" id="successMessage" style="border-radius:var(--radius-sm)">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <strong>¡Mensaje enviado exitosamente!</strong> Te responderemos en menos de 24 horas.
+          </div>
+
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label-custom">Nombre <span class="required">*</span></label>
+                <input type="text" class="form-control form-control-custom" id="nombre" 
+                       placeholder="Tu nombre completo" required minlength="2">
+                <div class="invalid-feedback">Por favor ingrese su nombre (mínimo 2 caracteres)</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom">Apellido <span class="required">*</span></label>
+                <input type="text" class="form-control form-control-custom" id="apellido" 
+                       placeholder="Tu apellido" required minlength="2">
+                <div class="invalid-feedback">Por favor ingrese su apellido</div>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label-custom">Correo Electrónico <span class="required">*</span></label>
+              <input type="email" class="form-control form-control-custom" id="email" 
+                     placeholder="correo@ejemplo.com" required>
+              <div class="invalid-feedback" id="emailError">Por favor ingrese un correo electrónico válido</div>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label-custom">Teléfono</label>
+              <input type="tel" class="form-control form-control-custom" id="telefono" 
+                     placeholder="+57 300 000 0000">
+              <small class="text-muted">Opcional — para contacto más rápido</small>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label-custom">Servicio de Interés <span class="required">*</span></label>
+              <select class="form-select form-control-custom" id="servicio" required>
+                <option value="">Selecciona un servicio...</option>
+              </select>
+              <div class="invalid-feedback">Por favor seleccione un servicio</div>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label-custom">Presupuesto Estimado</label>
+              <select class="form-select form-control-custom" id="presupuesto">
+                <option value="">Selecciona un rango...</option>
+                <option>Menos de $1.000 USD</option>
+                <option>$1.000 - $3.000 USD</option>
+                <option>$3.000 - $5.000 USD</option>
+                <option>$5.000 - $10.000 USD</option>
+                <option>Más de $10.000 USD</option>
+              </select>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label-custom">Mensaje <span class="required">*</span></label>
+              <textarea class="form-control form-control-custom" id="mensaje" rows="4"
+                        placeholder="Cuéntanos sobre tu proyecto, necesidades y expectativas..." 
+                        required minlength="10"></textarea>
+              <div class="invalid-feedback">El mensaje debe tener al menos 10 caracteres</div>
+            </div>
+
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="terms" required>
+              <label class="form-check-label" for="terms" style="font-size:0.85rem;color:var(--text-secondary)">
+                Acepto la <a href="#" style="color:var(--primary)">política de privacidad</a> 
+                y el tratamiento de mis datos personales. <span class="required">*</span>
+              </label>
+              <div class="invalid-feedback">Debe aceptar la política de privacidad</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom btn-lg w-100 mt-4" id="submitBtn">
+              <i class="bi bi-send me-2"></i>Enviar Mensaje
+            </button>
+
+            <p class="text-center mt-2" style="font-size:0.75rem;color:var(--text-muted)">
+              Los campos marcados con <span class="required">*</span> son obligatorios
+            </p>
+          </form>
+        </div>
+
+        <!-- INFO DE CONTACTO -->
+        <div class="col-lg-5">
+          <div class="contact-info-card mb-4">
+            <h5 class="fw-bold mb-4">Información de Contacto</h5>
+            <div class="d-flex flex-column gap-4">
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:#EFF6FF"><i class="bi bi-envelope-fill" style="color:#2563EB"></i></div>
+                <div>
+                  <div class="contact-info-label">Email</div>
+                  <div class="contact-info-value">info@techsphere.co</div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:#ECFDF5"><i class="bi bi-telephone-fill" style="color:#059669"></i></div>
+                <div>
+                  <div class="contact-info-label">Teléfono</div>
+                  <div class="contact-info-value">+57 300 123 4567</div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:#FFF7ED"><i class="bi bi-geo-alt-fill" style="color:#EA580C"></i></div>
+                <div>
+                  <div class="contact-info-label">Ubicación</div>
+                  <div class="contact-info-value">Medellín, Antioquia<br>Colombia</div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:#F5F3FF"><i class="bi bi-clock-fill" style="color:#7C3AED"></i></div>
+                <div>
+                  <div class="contact-info-label">Horario</div>
+                  <div class="contact-info-value">Lun - Vie: 8:00am - 6:00pm</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAPA PLACEHOLDER -->
+          <div class="rounded-4 overflow-hidden border mb-4" style="height:200px;background:#E2E8F0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <i class="bi bi-geo-alt" style="font-size:2rem;color:var(--text-muted)"></i>
+            <span style="font-size:0.85rem;color:var(--text-secondary);font-weight:600">Mapa de Ubicación</span>
+            <span style="font-size:0.75rem;color:var(--text-muted)">Google Maps Embed</span>
+          </div>
+
+          <!-- REDES SOCIALES -->
+          <div class="contact-info-card text-center">
+            <h6 class="fw-bold mb-3">Síguenos en Redes</h6>
+            <div class="footer-social d-flex justify-content-center">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /**
+     * Valida el formato de un correo electrónico
+     * @param {string} email
+     * @returns {boolean}
+     */
+    function isValidEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    /**
+     * Valida un campo individual y muestra/oculta errores
+     * @param {HTMLElement} field - Campo a validar
+     * @returns {boolean} true si es válido
+     */
+    function validateField(field) {
+      let isValid = true;
+
+      // Reset
+      field.classList.remove("is-invalid", "is-valid");
+
+      // Required check
+      if (field.hasAttribute("required") && !field.value.trim()) {
+        isValid = false;
+      }
+
+      // MinLength check
+      if (field.minLength > 0 && field.value.trim().length < field.minLength) {
+        isValid = false;
+      }
+
+      // Email check
+      if (field.type === "email" && field.value.trim()) {
+        if (!isValidEmail(field.value.trim())) {
+          isValid = false;
+          const errorEl = document.getElementById("emailError");
+          if (errorEl) errorEl.textContent = "Por favor ingrese un correo electrónico válido (ej: usuario@dominio.com)";
+        }
+      }
+
+      // Checkbox check
+      if (field.type === "checkbox" && field.hasAttribute("required") && !field.checked) {
+        isValid = false;
+      }
+
+      // Select check
+      if (field.tagName === "SELECT" && field.hasAttribute("required") && !field.value) {
+        isValid = false;
+      }
+
+      field.classList.add(isValid ? "is-valid" : "is-invalid");
+      return isValid;
+    }
+
+    /**
+     * Maneja el envío del formulario
+     * @param {Event} e - Evento submit
+     */
+    function handleSubmit(e) {
+      e.preventDefault();
+
+      const fields = ["nombre", "apellido", "email", "servicio", "mensaje", "terms"];
+      let allValid = true;
+
+      // Validar todos los campos requeridos
+      fields.forEach((id) => {
+        const field = document.getElementById(id);
+        if (field && !validateField(field)) {
+          allValid = false;
+        }
+      });
+
+      if (!allValid) {
+        showToast("Por favor corrige los campos marcados en rojo", "error");
+        return;
+      }
+
+      // Simular envío
+      const btn = document.getElementById("submitBtn");
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enviando...';
+
+      setTimeout(() => {
+        // Mostrar mensaje de éxito
+        document.getElementById("successMessage").classList.remove("d-none");
+        document.getElementById("contactForm").reset();
+
+        // Limpiar validaciones visuales
+        document.querySelectorAll(".is-valid, .is-invalid").forEach((el) => {
+          el.classList.remove("is-valid", "is-invalid");
+        });
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-send me-2"></i>Enviar Mensaje';
+
+        showToast("¡Mensaje enviado exitosamente! ✉️", "success");
+
+        // Scroll al mensaje de éxito
+        document.getElementById("successMessage").scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 1500);
+    }
+
+    // --- INICIALIZACIÓN ---
+    document.addEventListener("DOMContentLoaded", async () => {
+      document.getElementById("navbar-container").innerHTML = renderNavbar("contacto");
+      document.getElementById("footer-container").innerHTML = renderFooter();
+
+      await app.loadServices(false);
+      app.updateFavCounter();
+
+      // Poblar dropdown de servicios dinámicamente
+      const selectEl = document.getElementById("servicio");
+      app.services.forEach((s) => {
+        const opt = document.createElement("option");
+        opt.value = s.nombre;
+        opt.textContent = s.nombre;
+        selectEl.appendChild(opt);
+      });
+      const otroOpt = document.createElement("option");
+      otroOpt.value = "Otro";
+      otroOpt.textContent = "Otro";
+      selectEl.appendChild(otroOpt);
+
+      // Event listeners
+      document.getElementById("contactForm").addEventListener("submit", handleSubmit);
+
+      // Validación en tiempo real
+      document.querySelectorAll("#contactForm input, #contactForm textarea, #contactForm select").forEach((field) => {
+        field.addEventListener("blur", () => validateField(field));
+        field.addEventListener("input", () => {
+          if (field.classList.contains("is-invalid")) validateField(field);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

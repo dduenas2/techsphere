@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechSphere — Plataforma de Servicios Digitales</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Estilos Propios -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR (renderizado dinámico) -->
+  <div id="navbar-container"></div>
+
+  <!-- ============================
+       HERO SECTION
+       ============================ -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-badge">🚀 Plataforma de Servicios Digitales</div>
+          <h1 class="hero-title">
+            Soluciones <span class="text-gradient">Tecnológicas</span> para tu Negocio
+          </h1>
+          <p class="hero-description">
+            Explora nuestro catálogo de servicios digitales: desarrollo web, aplicaciones móviles, 
+            soluciones cloud e inteligencia artificial. Tu transformación digital comienza aquí.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="pages/servicios.html" class="btn btn-primary-custom btn-lg">
+              Explorar Servicios <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="pages/contacto.html" class="btn btn-outline-light btn-lg">
+              <i class="bi bi-play-circle me-1"></i> Contactar
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+          <div class="hero-code-card">
+            <div class="code-dots">
+              <span style="background:#EF4444"></span>
+              <span style="background:#FBBF24"></span>
+              <span style="background:#22C55E"></span>
+              <span class="ms-2" style="color:#64748B;font-size:0.8rem">techsphere.app</span>
+            </div>
+            <div class="code-block">
+              <span class="comment">// Tu proyecto digital</span><br>
+              <span class="keyword">const</span> <span class="function">servicio</span> = {<br>
+              &nbsp;&nbsp;nombre: <span class="string">"Desarrollo Web"</span>,<br>
+              &nbsp;&nbsp;tech: [<span class="string">"Angular"</span>, <span class="string">"Node.js"</span>],<br>
+              &nbsp;&nbsp;estado: <span class="string">"✅ Activo"</span><br>
+              };<br><br>
+              <span class="function">deploy</span>(servicio); <span class="comment">// 🚀</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       STATS BAR
+       ============================ -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">150<span>+</span></div>
+            <div class="stat-label">Servicios Disponibles</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">2.5<span>K</span></div>
+            <div class="stat-label">Clientes Satisfechos</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">99<span>%</span></div>
+            <div class="stat-label">Uptime Garantizado</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">24<span>/7</span></div>
+            <div class="stat-label">Soporte Técnico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SERVICIOS DESTACADOS
+       ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-label">⭐ Destacados</div>
+        <h2 class="section-title">Servicios Más Populares</h2>
+        <p class="section-desc">Descubre las soluciones tecnológicas más solicitadas por nuestros clientes</p>
+      </div>
+      <div class="row" id="featured-services">
+        <!-- Renderizado dinámico desde JS -->
+        <div class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="pages/servicios.html" class="btn btn-outline-custom btn-lg">
+          Ver Todos los Servicios <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CATEGORÍAS
+       ============================ -->
+  <section class="section" style="background:#fff">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-label">📂 Categorías</div>
+        <h2 class="section-title">Explora por Área</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <a href="pages/servicios.html?categoria=Web" class="text-decoration-none">
+            <div class="category-card" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE)">
+              <div class="icon">🌐</div>
+              <h5>Desarrollo Web</h5>
+              <p id="cat-count-web">— servicios</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="pages/servicios.html?categoria=Mobile" class="text-decoration-none">
+            <div class="category-card" style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE)">
+              <div class="icon">📱</div>
+              <h5>Apps Móviles</h5>
+              <p id="cat-count-mobile">— servicios</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="pages/servicios.html?categoria=Cloud" class="text-decoration-none">
+            <div class="category-card" style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5)">
+              <div class="icon">☁️</div>
+              <h5>Cloud & DevOps</h5>
+              <p id="cat-count-cloud">— servicios</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="pages/servicios.html?categoria=IA" class="text-decoration-none">
+            <div class="category-card" style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5)">
+              <div class="icon">🤖</div>
+              <h5>IA & Machine Learning</h5>
+              <p id="cat-count-ia">— servicios</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       TESTIMONIOS
+       ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="section-label">💬 Testimonios</div>
+        <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "TechSphere transformó nuestra presencia digital. El servicio de desarrollo web 
+              superó todas nuestras expectativas."
+            </p>
+            <div class="d-flex align-items-center gap-3">
+              <div class="testimonial-avatar">MR</div>
+              <div>
+                <div class="testimonial-name">María Rodríguez</div>
+                <div class="testimonial-role">CEO, InnovateTech</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "La migración a la nube fue impecable. Reducimos costos un 40% con su solución 
+              cloud personalizada."
+            </p>
+            <div class="d-flex align-items-center gap-3">
+              <div class="testimonial-avatar">CL</div>
+              <div>
+                <div class="testimonial-name">Carlos López</div>
+                <div class="testimonial-role">CTO, DataFlow</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "Su equipo de IA nos ayudó a implementar chatbots que mejoraron nuestra atención 
+              al cliente en un 60%."
+            </p>
+            <div class="d-flex align-items-center gap-3">
+              <div class="testimonial-avatar">AP</div>
+              <div>
+                <div class="testimonial-name">Ana Pérez</div>
+                <div class="testimonial-role">Directora, SmartRetail</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CTA SECTION
+       ============================ -->
+  <section class="section pb-5">
+    <div class="container">
+      <div class="cta-section text-center text-white position-relative">
+        <h2 class="fw-bold mb-3 position-relative" style="font-size:2rem;font-family:'Space Grotesk',sans-serif">
+          ¿Listo para Impulsar tu Proyecto?
+        </h2>
+        <p class="mb-4 position-relative" style="opacity:0.85;font-size:1.1rem">
+          Únete a más de 2,500 empresas que ya confían en nuestros servicios tecnológicos
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+          <a href="pages/servicios.html" class="btn btn-light btn-lg fw-bold" style="color:#2563EB">
+            Explorar Servicios
+          </a>
+          <a href="pages/contacto.html" class="btn btn-outline-light btn-lg fw-bold">
+            Contactar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (renderizado dinámico) -->
+  <div id="footer-container"></div>
+
+  <!-- ============================
+       SCRIPTS
+       ============================ -->
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="js/app.js"></script>
+  <script>
+    /**
+     * Inicialización de la página Home
+     * Carga servicios destacados y actualiza contadores
+     */
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Renderizar navbar y footer
+      document.getElementById("navbar-container").innerHTML = renderNavbar("home");
+      document.getElementById("footer-container").innerHTML = renderFooter();
+
+      // Cargar servicios (isRoot = true porque estamos en index.html)
+      await app.loadServices(true);
+      app.updateFavCounter();
+
+      // Renderizar servicios destacados (primeros 6 activos)
+      const featured = app.getActiveServices().slice(0, 6);
+      const container = document.getElementById("featured-services");
+
+      if (featured.length > 0) {
+        container.innerHTML = featured
+          .map((service) => renderServiceCard(service, app))
+          .join("");
+      } else {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📋</div>
+            <h4>No hay servicios disponibles</h4>
+            <p>Vuelve pronto para ver nuestro catálogo actualizado</p>
+          </div>`;
+      }
+
+      // Actualizar contadores de categorías
+      const categories = { Web: 0, Mobile: 0, Cloud: 0, IA: 0, DevOps: 0 };
+      app.services.forEach((s) => {
+        if (categories[s.categoria] !== undefined) categories[s.categoria]++;
+        // Cloud y DevOps se suman juntos
+        if (s.categoria === "DevOps") categories["Cloud"]++;
+      });
+
+      const catCountWeb = document.getElementById("cat-count-web");
+      const catCountMobile = document.getElementById("cat-count-mobile");
+      const catCountCloud = document.getElementById("cat-count-cloud");
+      const catCountIA = document.getElementById("cat-count-ia");
+
+      if (catCountWeb) catCountWeb.textContent = `${categories.Web} servicios`;
+      if (catCountMobile) catCountMobile.textContent = `${categories.Mobile} servicios`;
+      if (catCountCloud) catCountCloud.textContent = `${categories.Cloud} servicios`;
+      if (catCountIA) catCountIA.textContent = `${categories.IA} servicios`;
+    });
+  </script>
+</body>
+</html>

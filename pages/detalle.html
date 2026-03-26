@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Servicio — TechSphere</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-custom">
+    <div class="container">
+      <a href="../index.html">Inicio</a>
+      <span class="separator">›</span>
+      <a href="servicios.html">Servicios</a>
+      <span class="separator">›</span>
+      <strong id="breadcrumb-name">Cargando...</strong>
+    </div>
+  </div>
+
+  <!-- DETAIL CONTENT -->
+  <section class="section" id="detail-content">
+    <div class="container">
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED SERVICES -->
+  <section class="section" style="background:#F8FAFC" id="related-section" style="display:none">
+    <div class="container">
+      <h3 class="section-title text-center mb-4" style="font-size:1.5rem">Servicios Relacionados</h3>
+      <div class="row" id="related-services"></div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /**
+     * Renderiza toda la página de detalle de un servicio
+     * @param {Object} service - Datos del servicio
+     */
+    function renderDetail(service) {
+      const isFav = app.isFavorite(service.id);
+      const tagClass = getCategoryTagClass(service.categoria);
+
+      document.title = `${service.nombre} — TechSphere`;
+      document.getElementById("breadcrumb-name").textContent = service.nombre;
+
+      document.getElementById("detail-content").innerHTML = `
+        <div class="container">
+          <div class="row g-4 g-lg-5">
+            <!-- IMAGEN -->
+            <div class="col-lg-6">
+              <div class="detail-image-main">
+                <img src="${service.imagen}" alt="${service.nombre}"
+                     onerror="this.src='https://placehold.co/600x400/1E293B/94A3B8?text=${encodeURIComponent(service.nombre)}'">
+              </div>
+            </div>
+
+            <!-- INFO -->
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <span class="tag ${tagClass}">${service.categoria}</span>
+                ${service.tecnologias.map((t) => `<span class="tag tag-green">${t}</span>`).join("")}
+              </div>
+
+              <h1 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.75rem">
+                ${service.nombre}
+              </h1>
+
+              <div class="detail-meta mb-3">
+                <div class="detail-meta-item"><i class="bi bi-star-fill text-warning"></i> ${service.rating} (${service.resenas} reseñas)</div>
+                <div class="detail-meta-item"><i class="bi bi-people"></i> ${service.clientes} clientes</div>
+                <div class="detail-meta-item"><i class="bi bi-clock"></i> Entrega: ${service.entrega}</div>
+              </div>
+
+              <div class="detail-price mb-3">
+                ${formatPrice(service.precio)} <small>${service.tipoPrecio}</small>
+              </div>
+
+              <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem">
+                ${service.descripcionCompleta}
+              </p>
+
+              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem">Características incluidas:</h5>
+              <ul class="feature-list mb-4">
+                ${service.caracteristicas.map((c) => `<li><span class="check"><i class="bi bi-check-circle-fill"></i></span> ${c}</li>`).join("")}
+              </ul>
+
+              <div class="d-flex gap-3 flex-wrap">
+                <a href="contacto.html" class="btn btn-primary-custom btn-lg flex-grow-1 text-center">
+                  <i class="bi bi-cart me-1"></i> Solicitar Servicio
+                </a>
+                <button class="btn ${isFav ? "btn-danger" : "btn-outline-danger"} btn-lg" id="favBtn"
+                        onclick="toggleDetailFav(${service.id})">
+                  <i class="bi ${isFav ? "bi-heart-fill" : "bi-heart"}"></i>
+                  ${isFav ? "En Favoritos" : "Agregar a Favoritos"}
+                </button>
+                <a href="contacto.html" class="btn btn-outline-custom btn-lg">
+                  <i class="bi bi-envelope"></i> Contactar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    /**
+     * Toggle de favoritos desde la página de detalle
+     * @param {number} id - ID del servicio
+     */
+    function toggleDetailFav(id) {
+      const added = app.toggleFavorite(id);
+      const btn = document.getElementById("favBtn");
+
+      if (added) {
+        btn.className = "btn btn-danger btn-lg";
+        btn.innerHTML = '<i class="bi bi-heart-fill"></i> En Favoritos';
+        showToast("Servicio agregado a favoritos ♥", "success");
+      } else {
+        btn.className = "btn btn-outline-danger btn-lg";
+        btn.innerHTML = '<i class="bi bi-heart"></i> Agregar a Favoritos';
+        showToast("Servicio removido de favoritos", "info");
+      }
+    }
+
+    /**
+     * Renderiza servicios relacionados (misma categoría)
+     * @param {Object} service - Servicio actual
+     */
+    function renderRelated(service) {
+      const related = app.services
+        .filter((s) => s.categoria === service.categoria && s.id !== service.id)
+        .slice(0, 3);
+
+      if (related.length === 0) {
+        document.getElementById("related-section").style.display = "none";
+        return;
+      }
+
+      document.getElementById("related-services").innerHTML = related
+        .map((s) => renderServiceCard(s, app))
+        .join("");
+    }
+
+    // --- INICIALIZACIÓN ---
+    document.addEventListener("DOMContentLoaded", async () => {
+      document.getElementById("navbar-container").innerHTML = renderNavbar("servicios");
+      document.getElementById("footer-container").innerHTML = renderFooter();
+
+      await app.loadServices(false);
+      app.updateFavCounter();
+
+      // Obtener ID del servicio desde la URL
+      const params = new URLSearchParams(window.location.search);
+      const serviceId = params.get("id");
+
+      if (!serviceId) {
+        document.getElementById("detail-content").innerHTML = `
+          <div class="container"><div class="empty-state">
+            <div class="empty-state-icon">❌</div>
+            <h4>Servicio no especificado</h4>
+            <p>No se proporcionó un ID de servicio válido</p>
+            <a href="servicios.html" class="btn btn-primary-custom">Ver Catálogo</a>
+          </div></div>`;
+        return;
+      }
+
+      const service = app.getServiceById(serviceId);
+
+      if (!service) {
+        document.getElementById("detail-content").innerHTML = `
+          <div class="container"><div class="empty-state">
+            <div class="empty-state-icon">🔍</div>
+            <h4>Servicio no encontrado</h4>
+            <p>El servicio solicitado no existe o fue eliminado</p>
+            <a href="servicios.html" class="btn btn-primary-custom">Ver Catálogo</a>
+          </div></div>`;
+        return;
+      }
+
+      renderDetail(service);
+      renderRelated(service);
+    });
+  </script>
+</body>
+</html>
