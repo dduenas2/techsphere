@@ -54,4 +54,4 @@ npx serve .
 ```
 
 ## Autor
-[Nombre del Estudiante] - Módulo Desarrollo de Front-End - 2026
+David Alejandro Dueñas Castrillon - Módulo Desarrollo de Front-End - 2026
