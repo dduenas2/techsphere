@@ -182,14 +182,15 @@
   <script src="../js/app.js"></script>
   <script>
     /**
-     * Valida el formato de un correo electrónico
-     * @param {string} email
-     * @returns {boolean}
-     */
-    function isValidEmail(email) {
-      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return regex.test(email);
-    }
+ * Valida el formato de un correo electrónico
+ * Verifica estructura básica y dominio con al menos 2 caracteres
+ * @param {string} email - Correo a validar
+ * @returns {boolean} true si el formato es válido
+ */
+function isValidEmail(email) {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email.trim());
+}
 
     /**
      * Valida un campo individual y muestra/oculta errores
