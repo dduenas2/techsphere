@@ -8,7 +8,7 @@
     "tecnologias": ["Angular", "Node.js", "PostgreSQL"],
     "precio": 2500,
     "tipoPrecio": "USD / proyecto",
-    "imagen": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
+    "imagen": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop&q=80",
     "icono": "bi-globe",
     "badge": "Popular",
     "rating": 4.9,
