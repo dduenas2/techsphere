@@ -905,3 +905,28 @@ img { max-width: 100%; height: auto; }
 
 .hover-lift { transition: var(--transition); }
 .hover-lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+/* ========================================
+   ACCESIBILIDAD Y UX
+   ======================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible para navegación por teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Reducir animaciones para usuarios con preferencia */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
