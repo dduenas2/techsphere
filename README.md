@@ -3,6 +3,10 @@
 ## Descripción
 Aplicación web tipo catálogo de servicios tecnológicos digitales desarrollada con HTML5, CSS3, JavaScript (ES6+) y Bootstrap 5.
 
+## Demo
+- **Repositorio:** [GitHub](https://github.com/dduenas2/techsphere)
+- **Despliegue:** [GitHub Pages](https://dduenas2.github.io/techsphere/)
+
 ## Estructura del Proyecto
 ```
 techsphere/
